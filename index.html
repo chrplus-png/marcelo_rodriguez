@@ -25,6 +25,284 @@
             color: #fff;
         }
 
+        .intro-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #000;
+            z-index: 3000;
+            cursor: pointer;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .film-strip-vertical {
+            position: absolute;
+            width: 100%;
+            height: calc(100% + 400px);
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            animation: filmRunVertical 2s linear forwards;
+        }
+
+        .film-frame-full {
+            width: 100%;
+            height: 25vh;
+            background: #1a1a1a;
+            border-top: 25px solid #111;
+            border-bottom: 25px solid #111;
+            flex-shrink: 0;
+            position: relative;
+            box-shadow: 0 0 60px rgba(93, 173, 226, 0.15), inset 0 0 100px rgba(0,0,0,0.9);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .film-frame-full::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50px;
+            height: 100%;
+            background: repeating-linear-gradient(
+                to bottom,
+                transparent 0px,
+                transparent 10px,
+                #000 10px,
+                #000 18px,
+                transparent 18px,
+                transparent 28px,
+                #000 28px,
+                #000 36px
+            );
+            z-index: 2;
+        }
+
+        .film-frame-full::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50px;
+            height: 100%;
+            background: repeating-linear-gradient(
+                to bottom,
+                transparent 0px,
+                transparent 10px,
+                #000 10px,
+                #000 18px,
+                transparent 18px,
+                transparent 28px,
+                #000 28px,
+                #000 36px
+            );
+            z-index: 2;
+        }
+
+        .film-frame-content {
+            position: absolute;
+            top: 25px;
+            left: 50px;
+            right: 50px;
+            bottom: 25px;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.7;
+            filter: contrast(1.1) brightness(0.9);
+        }
+
+        .film-frame-overlay {
+            position: absolute;
+            top: 25px;
+            left: 50px;
+            right: 50px;
+            bottom: 25px;
+            background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, transparent 30%, transparent 70%, rgba(0,0,0,0.3) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .film-bar {
+            height: 2px;
+            background: rgba(93, 173, 226, 0.2);
+            width: 60%;
+        }
+
+        .film-bar-thin {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.05);
+            width: 40%;
+        }
+
+        @keyframes filmRunVertical {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-50%); }
+        }
+
+        .enter-effect {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: enterScreen 2s ease-out forwards;
+            z-index: 5;
+        }
+
+        .enter-frame {
+            width: 90vw;
+            height: 80vh;
+            border: 8px solid #222;
+            background: #000;
+            box-shadow: 0 0 200px rgba(0,0,0,1), inset 0 0 150px rgba(0,0,0,1);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .enter-frame::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 40px;
+            background: #111;
+            z-index: 2;
+        }
+
+        .enter-frame::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40px;
+            background: #111;
+            z-index: 2;
+        }
+
+        .enter-film-strip {
+            position: absolute;
+            width: 100%;
+            height: calc(100% + 300px);
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            animation: filmRunVertical 2s linear forwards;
+        }
+
+        .enter-film-frame {
+            width: 100%;
+            height: 100%;
+            background: #1a1a1a;
+            border-top: 40px solid #111;
+            border-bottom: 40px solid #111;
+            flex-shrink: 0;
+            position: relative;
+            box-shadow: 0 0 80px rgba(93, 173, 226, 0.2), inset 0 0 120px rgba(0,0,0,0.9);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .enter-film-frame::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 80px;
+            height: 100%;
+            background: repeating-linear-gradient(
+                to bottom,
+                transparent 0px,
+                transparent 15px,
+                #000 15px,
+                #000 25px,
+                transparent 25px,
+                transparent 40px,
+                #000 40px,
+                #000 50px
+            );
+            z-index: 3;
+        }
+
+        .enter-film-frame::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 80px;
+            height: 100%;
+            background: repeating-linear-gradient(
+                to bottom,
+                transparent 0px,
+                transparent 15px,
+                #000 15px,
+                #000 25px,
+                transparent 25px,
+                transparent 40px,
+                #000 40px,
+                #000 50px
+            );
+            z-index: 3;
+        }
+
+        .enter-film-content {
+            position: absolute;
+            top: 40px;
+            left: 80px;
+            right: 80px;
+            bottom: 40px;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.6;
+            filter: contrast(1.2) brightness(0.85);
+        }
+
+        @keyframes enterScreen {
+            0% {
+                transform: scale(1.8);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0.4) translateY(20vh);
+                opacity: 0;
+            }
+        }
+
+        .skip-text {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255,255,255,0.5);
+            font-size: 13px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            z-index: 10;
+            animation: pulseText 1s infinite;
+        }
+
+        @keyframes pulseText {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
         nav {
             position: fixed;
             top: 0;
@@ -296,6 +574,7 @@
             margin-left: 4px;
         }
 
+        
         .video-thumbnail .title-overlay {
             position: absolute;
             bottom: 0;
@@ -323,6 +602,17 @@
         .video-info .video-name {
             font-size: 12px;
             color: #999;
+        }
+
+        .video-info .ai-tag {
+            font-size: 10px;
+            color: #5dade2;
+            background: rgba(93, 173, 226, 0.15);
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-left: 8px;
+            text-transform: none;
+            letter-spacing: 0;
         }
 
         .badge {
@@ -688,6 +978,15 @@
 </head>
 
 <body>
+    <div class="intro-overlay" id="intro-overlay" onclick="skipIntro()">
+        <div class="film-strip-vertical" id="film-strip"></div>
+        <div class="enter-effect" id="enter-effect">
+            <div class="enter-frame">
+                <div class="enter-film-strip" id="enter-film-strip"></div>
+            </div>
+        </div>
+        <span class="skip-text">Click para continuar</span>
+    </div>
     <nav>
         <a href="#inicio" class="active" onclick="animateSection(this)">Inicio</a>
         <a href="#proyectos" onclick="animateSection(this)">Proyectos</a>
@@ -707,11 +1006,21 @@
         <div class="section-header animate-fade-up">
             <h2>PROYECTOS</h2>
         </div>
+
+        <div class="section-header animate-fade-up" style="margin-top:80px;">
+            <h2>PIEZAS PUBLICITARIAS</h2>
+        </div>
         <div class="video-grid" id="spots-grid"></div>
 
-        <div class="video-grid" id="trailers-grid" style="margin-top:25px"></div>
+        <div class="section-header animate-fade-up" style="margin-top:80px;">
+            <h2>CONTENIDO DE TELEVISIÓN</h2>
+        </div>
+        <div class="video-grid" id="trailers-grid" style="margin-top:40px"></div>
 
-        <div class="video-grid" id="promos-grid" style="margin-top:25px"></div>
+        <div class="section-header animate-fade-up" style="margin-top:80px;">
+            <h2>CONTENIDO DE CINE</h2>
+        </div>
+        <div class="video-grid" id="promos-grid" style="margin-top:40px"></div>
     </section>
 
     <section id="bio">
@@ -720,7 +1029,7 @@
         </div>
         <div class="bio-content animate-fade-up">
             <div class="bio-photo">
-                <img src="assets/marcelo estudio.png" alt="Marcelo A. Rodriguez">
+                <img src="assets/IMG_2438.jpg" alt="Marcelo A. Rodriguez">
                 <img src="assets/gemini-3-pro-image-preview-2k (nano-banana-pro)_a_mejorara_la_calidad_.png"
                     alt="Trabajo audiovisual">
             </div>
@@ -781,6 +1090,7 @@
             <video id="lightbox-video" controls>
                 <source src="" type="video/mp4">
             </video>
+            <iframe id="lightbox-iframe" style="display:none; width:100%; height:100%; border:none; border-radius:8px;"></iframe>
             <div class="lightbox-title" id="lightbox-title"></div>
         </div>
     </div>
@@ -791,16 +1101,18 @@
 
         const videos = {
             spots: [
-                { name: "LEOPARDMAN", file: "LEOPARDMAN spot IA.mp4", thumb: "LEOPARDMAN spot IA.jpg", color: "#6c5ce7", info: "Spot publicitario generado con IA, realizado para redes." },
-                { name: "SPIRITO BLUE", file: "SPIRITO BLUE spot IA.mp4", thumb: "SPIRITO BLUE spot IA.jpg", color: "#a29bfe", info: "Spot publicitario generado con IA, realizado como referencia o maqueta." }
+                { name: "SOTTOVOCE", file: "sottovoce_webddd.mp4", thumb: "sottovoce_webddd.jpg", color: "#6c5ce7" },
+                { name: "STALLION MUEBLES", file: "STALLION MUEBLES.mp4", thumb: "STALLION MUEBLES.jpg", color: "#6c5ce7", aiBadge: true },
+                { name: "LEOPARDMAN", file: "LEOPARDMAN spot IA.mp4", thumb: "LEOPARDMAN spot IA.jpg", color: "#6c5ce7", info: "Spot publicitario generado con IA, realizado para redes.", aiBadge: true },
+                { name: "SPIRITO BLUE", file: "SPIRITO BLUE spot IA.mp4", thumb: "SPIRITO BLUE spot IA.jpg", color: "#a29bfe", info: "Spot publicitario generado con IA, realizado como referencia o maqueta.", aiBadge: true }
             ],
             trailers: [
+                { name: "LO VISTE EN ENCUENTRO", file: "LO VISTE EN ENCUENTRO.mp4", thumb: "LO VISTE EN ENCUENTRO.jpg", color: "#0984e3" },
+                { name: "MATERIALES Y MATERIAS PRIMAS", file: "MATERIALES Y MATERIAS PRIMAS.mp4", thumb: "MATERIALES Y MATERIAS PRIMAS.jpg", color: "#74b9ff" },
+                { name: "MES DE LA MÚSICA", file: "MES DE LA MÚSICA.mp4", thumb: "MES DE LA MÚSICA.jpg", color: "#0984e3" },
                 { name: "ENSAYO PARA GÜEMES", file: "ENSAYO PARA GUEMES trailer.mp4", thumb: "ENSAYO PARA GUEMES trailer.jpg", color: "#e17055", info: "Especial unitario para TV, emitido por canal Encuentro." },
-                { name: "LA MUJER DEL RÍO", file: "PELÍCULA 1 - LA MUJER DEL RÍO_1.mp4", thumb: "LA MUJER DEL RÍO trailer.jpg", color: "#fab1a0", info: "Largometraje de ficción premizada en BAFICI 2025 (aún no estreada)." },
                 { name: "MARTINA CHAPANAY", file: "MARTINA CHAPAÑAY trailer.mp4", thumb: "MARTINA CHAPAÑAY trailer.jpg", color: "#e17055", info: "Serie de ficción emitida por canal Encuentro." },
-                { name: "LEONARDO INSPIRADO", file: "LEONARDO INSPIRADO trailer.mp4", thumb: "LEONARDO INSPIRADO trailer.jpg", color: "#ff7675" }
-            ],
-            promos: [
+                { name: "LEONARDO INSPIRADO", file: "LEONARDO INSPIRADO trailer.mp4", thumb: "LEONARDO INSPIRADO trailer.jpg", color: "#ff7675" },
                 { name: "ARTISTAS LE GUILLERM", file: "ARTISTAS LE GUILLERM promo.mp4", thumb: "ARTISTAS LE GUILLERM promo.jpg", color: "#0984e3" },
                 { name: "ATLÁNTICO SUR", file: "ATLÁNTICO SUR promo.mp4", thumb: "ATLANTICO SUR promo.jpg", color: "#74b9ff" },
                 { name: "CICLO NO FICCIÓN 2", file: "CICLO NO FICCION 2 promo.mp4", thumb: "CICLO NO FICCION 2 promo.jpg", color: "#0984e3" },
@@ -811,6 +1123,11 @@
                 { name: "LOS VISUALES", file: "LOS VISUALES promo.mp4", thumb: "LOS VISUALES promo.jpg", color: "#0984e3" },
                 { name: "MADRES PLAZA DE MAYO", file: "MADRES PLAZA DE MAYO promo.mp4", thumb: "MADRES PLAZA DE MAYO promo.jpg", color: "#74b9ff" },
                 { name: "NUEVA ZELANDA SALVAJE", file: "NUEVA ZELANDIA SALVAJE.mp4", thumb: "NUEVA ZELANDIA SALVAJE.jpg", color: "#0984e3" }
+            ],
+            promos: [
+                { name: "LA MUJER DEL RÍO", file: "PELÍCULA 1 - LA MUJER DEL RÍO_1.mp4", thumb: "LA MUJER DEL RÍO trailer.jpg", color: "#fab1a0", info: "Largometraje de ficción premizada en BAFICI 2025 (aún no estreada)." },
+                { name: "HIELOS MÍTICOS", youtube: "R6H-GDIgvDc", thumb: "HIELOS MÍTICOS.jpg", color: "#e17055", info: "Largometraje de ficción dirigido por Emiliano Serra." },
+                { name: "LA RAULITO, GOLPES BAJOS", youtube: "bzpr6kQyOjQ", thumb: "LA RAULITO, GOLPES BAJOS.jpg", color: "#fab1a0", info: "Largometraje de ficción dirigido por Emiliano Serra." }
             ]
         };
 
@@ -827,11 +1144,55 @@
                         </div>
                     </div>
                     <div class="video-info">
-                        <span class="video-name">${video.name}</span>
+                        <span class="video-name">${video.name}${video.aiBadge ? ' <span class="ai-tag">relizado con IA</span>' : ''}</span>
                         <button class="info-btn" onclick="event.stopPropagation(); this.parentElement.parentElement.querySelector('.info-overlay').classList.add('active')">+info</button>
                     </div>
                 </div>
             `;
+        }
+
+        function skipIntro() {
+            const overlay = document.getElementById('intro-overlay');
+            overlay.style.opacity = '0';
+            overlay.style.transition = 'opacity 0.3s';
+            setTimeout(() => {
+                overlay.style.display = 'none';
+            }, 300);
+        }
+
+        function createFilmStrip() {
+            const strip = document.getElementById('film-strip');
+            const allThumbs = videos.spots.concat(videos.trailers, videos.promos).map(v => v.thumb);
+            const frames = 8;
+            for (let i = 0; i < frames; i++) {
+                const frame = document.createElement('div');
+                frame.className = 'film-frame-full';
+                const thumb = allThumbs[i % allThumbs.length];
+                frame.innerHTML = `
+                    <div class="film-frame-content" style="background-image: url('${thumbPath}${thumb}')"></div>
+                    <div class="film-frame-overlay">
+                        <div class="film-bar"></div>
+                        <div class="film-bar-thin"></div>
+                    </div>
+                `;
+                strip.appendChild(frame);
+            }
+
+            const enterStrip = document.getElementById('enter-film-strip');
+            for (let i = 0; i < 5; i++) {
+                const frame = document.createElement('div');
+                frame.className = 'enter-film-frame';
+                const thumb = allThumbs[i % allThumbs.length];
+                frame.innerHTML = `<div class="enter-film-content" style="background-image: url('${thumbPath}${thumb}')"></div>`;
+                enterStrip.appendChild(frame);
+            }
+        }
+
+        function initIntro() {
+            createFilmStrip();
+            setTimeout(() => {
+                skipIntro();
+            }, 2000);
         }
 
         function renderVideos() {
@@ -844,16 +1205,29 @@
         function openLightbox(index) {
             currentVideoIndex = index;
             const video = allVideos[index];
+            const lightbox = document.getElementById('lightbox');
             const videoEl = document.getElementById('lightbox-video');
+            const iframe = document.getElementById('lightbox-iframe');
+
+            if (video.youtube) {
+                window.open(`https://www.youtube.com/watch?v=${video.youtube}`, '_blank');
+                return;
+            }
+
+            iframe.style.display = 'none';
             videoEl.src = videoPath + video.file;
+            videoEl.style.display = 'block';
+
             document.getElementById('lightbox-title').textContent = video.name;
-            document.getElementById('lightbox').classList.add('active');
-            videoEl.play();
+            lightbox.classList.add('active');
         }
 
         function closeLightbox() {
             const videoEl = document.getElementById('lightbox-video');
-            videoEl.pause(); videoEl.src = '';
+            const iframe = document.getElementById('lightbox-iframe');
+            videoEl.pause();
+            videoEl.src = '';
+            if (iframe) iframe.src = '';
             document.getElementById('lightbox').classList.remove('active');
         }
 
@@ -861,7 +1235,17 @@
             currentVideoIndex = (currentVideoIndex + direction + allVideos.length) % allVideos.length;
             const video = allVideos[currentVideoIndex];
             const videoEl = document.getElementById('lightbox-video');
+            const iframe = document.getElementById('lightbox-iframe');
+
+            if (video.youtube) {
+                window.open(`https://www.youtube.com/watch?v=${video.youtube}`, '_blank');
+                return;
+            }
+
             videoEl.src = videoPath + video.file;
+            videoEl.style.display = 'block';
+            if (iframe) iframe.style.display = 'none';
+
             document.getElementById('lightbox-title').textContent = video.name;
             videoEl.play();
         }
@@ -911,6 +1295,7 @@
             }
         }
 
+        initIntro();
         renderVideos();
     </script>
 </body>
