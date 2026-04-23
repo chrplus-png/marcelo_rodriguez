@@ -40,253 +40,116 @@
             justify-content: center;
         }
 
-        .film-strip-vertical {
+        .film-strip-wrapper {
             position: absolute;
             width: 100%;
-            height: calc(100% + 400px);
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-            animation: filmRunVertical 2s linear forwards;
-        }
-
-        .film-frame-full {
-            width: 100%;
-            height: 25vh;
-            background: #1a1a1a;
-            border-top: 25px solid #111;
-            border-bottom: 25px solid #111;
-            flex-shrink: 0;
-            position: relative;
-            box-shadow: 0 0 60px rgba(93, 173, 226, 0.15), inset 0 0 100px rgba(0,0,0,0.9);
+            height: 100%;
             overflow: hidden;
             display: flex;
-            align-items: center;
             justify-content: center;
         }
 
-        .film-frame-full::before {
-            content: '';
+        .film-strip-vertical {
+            width: 400px;
+            height: calc(100% + 1600px);
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            animation: filmRunVertical 3s linear forwards;
+        }
+
+        .film-frame-full {
+            width: 400px;
+            height: 225px;
+            background: #1a1a1a;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            border-bottom: 24px solid #111;
+            border-top: 24px solid #111;
+        }
+
+        .film-sprocket-left {
             position: absolute;
-            top: 0;
             left: 0;
-            width: 50px;
+            top: 0;
+            width: 24px;
             height: 100%;
-            background: repeating-linear-gradient(
-                to bottom,
-                transparent 0px,
-                transparent 10px,
-                #000 10px,
-                #000 18px,
-                transparent 18px,
-                transparent 28px,
-                #000 28px,
-                #000 36px
-            );
+            background-color: #111;
+            background-image:
+                linear-gradient(to right, #000 0%, #000 50%, transparent 50%, transparent 100%);
+            background-size: 12px 12px;
+            background-repeat: repeat;
             z-index: 2;
         }
 
-        .film-frame-full::after {
-            content: '';
+        .film-sprocket-right {
             position: absolute;
-            top: 0;
             right: 0;
-            width: 50px;
+            top: 0;
+            width: 24px;
             height: 100%;
-            background: repeating-linear-gradient(
-                to bottom,
-                transparent 0px,
-                transparent 10px,
-                #000 10px,
-                #000 18px,
-                transparent 18px,
-                transparent 28px,
-                #000 28px,
-                #000 36px
-            );
+            background-color: #111;
+            background-image:
+                linear-gradient(to right, transparent 0%, transparent 50%, #000 50%, #000 100%);
+            background-size: 12px 12px;
+            background-repeat: repeat;
             z-index: 2;
         }
 
         .film-frame-content {
             position: absolute;
-            top: 25px;
-            left: 50px;
-            right: 50px;
-            bottom: 25px;
+            top: 18px;
+            left: 30px;
+            right: 30px;
+            bottom: 18px;
             background-size: cover;
             background-position: center;
-            opacity: 0.7;
+            opacity: 0.8;
             filter: contrast(1.1) brightness(0.9);
         }
 
         .film-frame-overlay {
             position: absolute;
-            top: 25px;
-            left: 50px;
-            right: 50px;
-            bottom: 25px;
-            background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, transparent 30%, transparent 70%, rgba(0,0,0,0.3) 100%);
+            top: 18px;
+            left: 30px;
+            right: 30px;
+            bottom: 18px;
+            background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, transparent 20%, transparent 80%, rgba(0,0,0,0.3) 100%);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
 
         .film-bar {
-            height: 2px;
-            background: rgba(93, 173, 226, 0.2);
-            width: 60%;
-        }
-
-        .film-bar-thin {
             height: 1px;
-            background: rgba(255, 255, 255, 0.05);
-            width: 40%;
+            background: rgba(93, 173, 226, 0.15);
+            width: 50%;
         }
 
         @keyframes filmRunVertical {
             0% { transform: translateY(0); }
-            100% { transform: translateY(-50%); }
-        }
-
-        .enter-effect {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            animation: enterScreen 2s ease-out forwards;
-            z-index: 5;
-        }
-
-        .enter-frame {
-            width: 90vw;
-            height: 80vh;
-            border: 8px solid #222;
-            background: #000;
-            box-shadow: 0 0 200px rgba(0,0,0,1), inset 0 0 150px rgba(0,0,0,1);
-            overflow: hidden;
-            position: relative;
-        }
-
-        .enter-frame::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 40px;
-            background: #111;
-            z-index: 2;
-        }
-
-        .enter-frame::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 40px;
-            background: #111;
-            z-index: 2;
-        }
-
-        .enter-film-strip {
-            position: absolute;
-            width: 100%;
-            height: calc(100% + 300px);
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-            animation: filmRunVertical 2s linear forwards;
-        }
-
-        .enter-film-frame {
-            width: 100%;
-            height: 100%;
-            background: #1a1a1a;
-            border-top: 40px solid #111;
-            border-bottom: 40px solid #111;
-            flex-shrink: 0;
-            position: relative;
-            box-shadow: 0 0 80px rgba(93, 173, 226, 0.2), inset 0 0 120px rgba(0,0,0,0.9);
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .enter-film-frame::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 80px;
-            height: 100%;
-            background: repeating-linear-gradient(
-                to bottom,
-                transparent 0px,
-                transparent 15px,
-                #000 15px,
-                #000 25px,
-                transparent 25px,
-                transparent 40px,
-                #000 40px,
-                #000 50px
-            );
-            z-index: 3;
-        }
-
-        .enter-film-frame::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 80px;
-            height: 100%;
-            background: repeating-linear-gradient(
-                to bottom,
-                transparent 0px,
-                transparent 15px,
-                #000 15px,
-                #000 25px,
-                transparent 25px,
-                transparent 40px,
-                #000 40px,
-                #000 50px
-            );
-            z-index: 3;
-        }
-
-        .enter-film-content {
-            position: absolute;
-            top: 40px;
-            left: 80px;
-            right: 80px;
-            bottom: 40px;
-            background-size: cover;
-            background-position: center;
-            opacity: 0.6;
-            filter: contrast(1.2) brightness(0.85);
-        }
-
-        @keyframes enterScreen {
-            0% {
-                transform: scale(1.8);
-                opacity: 1;
-            }
-            100% {
-                transform: scale(0.4) translateY(20vh);
-                opacity: 0;
-            }
+            100% { transform: translateY(-1400px); }
         }
 
         .skip-text {
             position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: enterScreen 3s ease-out forwards;
+            z-index: 5;
+        }
+
+                    position: absolute;
             bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
@@ -979,11 +842,8 @@
 
 <body>
     <div class="intro-overlay" id="intro-overlay" onclick="skipIntro()">
-        <div class="film-strip-vertical" id="film-strip"></div>
-        <div class="enter-effect" id="enter-effect">
-            <div class="enter-frame">
-                <div class="enter-film-strip" id="enter-film-strip"></div>
-            </div>
+        <div class="film-strip-wrapper">
+            <div class="film-strip-vertical" id="film-strip"></div>
         </div>
         <span class="skip-text">Click para continuar</span>
     </div>
@@ -1163,28 +1023,20 @@
         function createFilmStrip() {
             const strip = document.getElementById('film-strip');
             const allThumbs = videos.spots.concat(videos.trailers, videos.promos).map(v => v.thumb);
-            const frames = 8;
+            const frames = 50;
             for (let i = 0; i < frames; i++) {
                 const frame = document.createElement('div');
                 frame.className = 'film-frame-full';
                 const thumb = allThumbs[i % allThumbs.length];
                 frame.innerHTML = `
+                    <div class="film-sprocket-left"></div>
+                    <div class="film-sprocket-right"></div>
                     <div class="film-frame-content" style="background-image: url('${thumbPath}${thumb}')"></div>
                     <div class="film-frame-overlay">
                         <div class="film-bar"></div>
-                        <div class="film-bar-thin"></div>
                     </div>
                 `;
                 strip.appendChild(frame);
-            }
-
-            const enterStrip = document.getElementById('enter-film-strip');
-            for (let i = 0; i < 5; i++) {
-                const frame = document.createElement('div');
-                frame.className = 'enter-film-frame';
-                const thumb = allThumbs[i % allThumbs.length];
-                frame.innerHTML = `<div class="enter-film-content" style="background-image: url('${thumbPath}${thumb}')"></div>`;
-                enterStrip.appendChild(frame);
             }
         }
 
@@ -1192,7 +1044,7 @@
             createFilmStrip();
             setTimeout(() => {
                 skipIntro();
-            }, 2000);
+            }, 3000);
         }
 
         function renderVideos() {
