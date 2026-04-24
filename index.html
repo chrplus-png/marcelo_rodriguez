@@ -47,109 +47,133 @@
             overflow: hidden;
             display: flex;
             justify-content: center;
+            z-index: 3;
         }
 
         .film-strip-vertical {
-            width: 400px;
+            width: 352px;
             height: calc(100% + 1600px);
             display: flex;
             flex-direction: column;
             gap: 0;
-            animation: filmRunVertical 3s linear forwards;
+            animation: filmRunVertical 2s linear infinite;
+            position: relative;
+            background: repeating-linear-gradient(
+                to bottom,
+                #111 0px, #111 8px,
+                #000 8px, #000 16px,
+                #111 16px, #111 24px,
+                #000 24px, #000 32px
+            );
+            background-size: 16px 32px;
+            background-position: 0 0;
+        }
+
+        .film-strip-vertical::before,
+        .film-strip-vertical::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 16px;
+            height: 100%;
+            background: repeating-linear-gradient(
+                to bottom,
+                #111 0px, #111 8px,
+                #000 8px, #000 16px
+            );
+            background-size: 16px 16px;
+            z-index: 5;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3), 0 0 30px rgba(255, 255, 255, 0.1);
+        }
+
+        .film-strip-vertical::before {
+            left: 0;
+        }
+
+        .film-strip-vertical::after {
+            right: 0;
         }
 
         .film-frame-full {
-            width: 400px;
-            height: 225px;
+            width: 352px;
+            height: 180px;
             background: #1a1a1a;
             position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             flex-shrink: 0;
-            border-bottom: 24px solid #111;
-            border-top: 24px solid #111;
+            border-top: 16px solid #111;
+            border-bottom: 16px solid #111;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
         }
 
         .film-sprocket-left {
             position: absolute;
             left: 0;
             top: 0;
-            width: 24px;
+            width: 16px;
             height: 100%;
             background-color: #111;
             background-image:
-                linear-gradient(to right, #000 0%, #000 50%, transparent 50%, transparent 100%);
-            background-size: 12px 12px;
-            background-repeat: repeat;
+                repeating-linear-gradient(to bottom,
+                    #000 0px, #000 8px,
+                    transparent 8px, transparent 16px);
+            background-size: 100% 16px;
             z-index: 2;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3), 0 0 30px rgba(255, 255, 255, 0.1);
         }
 
         .film-sprocket-right {
             position: absolute;
             right: 0;
             top: 0;
-            width: 24px;
+            width: 16px;
             height: 100%;
             background-color: #111;
             background-image:
-                linear-gradient(to right, transparent 0%, transparent 50%, #000 50%, #000 100%);
-            background-size: 12px 12px;
-            background-repeat: repeat;
+                repeating-linear-gradient(to bottom,
+                    #000 0px, #000 8px,
+                    transparent 8px, transparent 16px);
+            background-size: 100% 16px;
             z-index: 2;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3), 0 0 30px rgba(255, 255, 255, 0.1);
         }
 
         .film-frame-content {
             position: absolute;
-            top: 18px;
-            left: 30px;
-            right: 30px;
-            bottom: 18px;
+            top: 16px;
+            left: 16px;
+            right: 16px;
+            bottom: 16px;
             background-size: cover;
             background-position: center;
-            opacity: 0.8;
-            filter: contrast(1.1) brightness(0.9);
+            filter: contrast(1.1) brightness(0.95);
         }
 
         .film-frame-overlay {
             position: absolute;
-            top: 18px;
-            left: 30px;
-            right: 30px;
-            bottom: 18px;
-            background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, transparent 20%, transparent 80%, rgba(0,0,0,0.3) 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .film-bar {
-            height: 1px;
-            background: rgba(93, 173, 226, 0.15);
-            width: 50%;
+            top: 16px;
+            left: 16px;
+            right: 16px;
+            bottom: 16px;
+            background: linear-gradient(180deg,
+                rgba(0,0,0,0.3) 0%,
+                transparent 20%,
+                transparent 80%,
+                rgba(0,0,0,0.3) 100%);
+            pointer-events: none;
         }
 
         @keyframes filmRunVertical {
             0% { transform: translateY(0); }
-            100% { transform: translateY(-1400px); }
+            100% { transform: translateY(calc(-100% + 100vh)); }
+        }
+
+        @keyframes filmFlicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.85; }
         }
 
         .skip-text {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            animation: enterScreen 3s ease-out forwards;
-            z-index: 5;
-        }
-
-                    position: absolute;
             bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
@@ -274,6 +298,24 @@
         .animate-fade-up {
             opacity: 0;
             animation: fadeInUp 1.2s ease-out forwards;
+        }
+
+        .intro-reveal {
+            animation: revealSection 0.8s ease-out forwards !important;
+        }
+
+        .intro-reveal .animate-fade-up {
+            animation: revealContent 0.8s ease-out forwards !important;
+        }
+
+        @keyframes revealSection {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes revealContent {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
 
         #inicio {
@@ -842,6 +884,7 @@
 
 <body>
     <div class="intro-overlay" id="intro-overlay" onclick="skipIntro()">
+        <audio id="intro-audio" src="./assets/freesound_community-small-film-projector-26188.mp3" preload="auto"></audio>
         <div class="film-strip-wrapper">
             <div class="film-strip-vertical" id="film-strip"></div>
         </div>
@@ -1013,17 +1056,22 @@
 
         function skipIntro() {
             const overlay = document.getElementById('intro-overlay');
+            const inicio = document.getElementById('inicio');
             overlay.style.opacity = '0';
-            overlay.style.transition = 'opacity 0.3s';
-            setTimeout(() => {
-                overlay.style.display = 'none';
-            }, 300);
+            overlay.style.transition = 'opacity 0.5s ease-out';
+            overlay.style.display = 'none';
+            inicio.classList.add('intro-reveal');
+            if (window.introAudio) {
+                window.introAudio.pause();
+                window.introAudio.currentTime = 0;
+            }
         }
 
         function createFilmStrip() {
             const strip = document.getElementById('film-strip');
             const allThumbs = videos.spots.concat(videos.trailers, videos.promos).map(v => v.thumb);
-            const frames = 50;
+            const frames = 40;
+
             for (let i = 0; i < frames; i++) {
                 const frame = document.createElement('div');
                 frame.className = 'film-frame-full';
@@ -1032,9 +1080,7 @@
                     <div class="film-sprocket-left"></div>
                     <div class="film-sprocket-right"></div>
                     <div class="film-frame-content" style="background-image: url('${thumbPath}${thumb}')"></div>
-                    <div class="film-frame-overlay">
-                        <div class="film-bar"></div>
-                    </div>
+                    <div class="film-frame-overlay"></div>
                 `;
                 strip.appendChild(frame);
             }
@@ -1042,9 +1088,17 @@
 
         function initIntro() {
             createFilmStrip();
+            window.introAudio = new Audio('./assets/freesound_community-small-film-projector-26188.mp3');
+            window.introAudio.volume = 0.5;
+            window.introAudio.loop = true;
+            window.introAudio.play().catch(() => {});
+            setTimeout(() => {
+                const inicio = document.getElementById('inicio');
+                inicio.classList.add('intro-reveal');
+            }, 1500);
             setTimeout(() => {
                 skipIntro();
-            }, 3000);
+            }, 2200);
         }
 
         function renderVideos() {
